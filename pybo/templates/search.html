@@ -1,0 +1,42 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="Generator" content="EditPlus®" />
+    <meta name="Author" content="" />
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <title>게시판</title>
+
+    <style type="text/css">
+      body {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form action="/" method="POST">
+      <input type="text" name="name" />
+      <input type="submit" value="검 색" /><br />
+    </form>
+    <h4>검색결과</h4>
+    {% if rows%}
+    <table border="1" width="600" align="center">
+      <thead>
+        <td>이름</td>
+        <td>내용</td>
+        <td>수정/삭제</td>
+      </thead>
+      {% for row in rows %}
+      <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>
+          <a href="{{url_for('update', uid = row[0])}}">수정</a>
+          <a href="{{url_for('delete', uid = row[0])}}">삭제</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
